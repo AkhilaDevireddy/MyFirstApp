@@ -19,4 +19,5 @@ from biryani import views as biryani_views
 urlpatterns = [
     path('', biryani_views.get_biryani_details, name='List of Biryani Details'), 
     path('get_biryani_details/', biryani_views.get_biryani_details_by_name, name='Get Biryani Details By Biryani Name'), 
+    path('add_biryani_details/', biryani_views.set_biryani_details, name='Add/Modify Biryani Details'), 
 ]

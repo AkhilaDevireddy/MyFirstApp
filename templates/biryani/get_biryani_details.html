@@ -1,8 +1,8 @@
 <h> {{ biryani_details.biryani_name }} Details </h>
-<p> Biryani's Name: {{ biryani_details }}.{{ biryani_name }} </p>
+<p> Biryani's Name: {{ biryani_details.biryani_name }} </p>
 <p> Biryani's Origin: {{ biryani_details.origin_place }} </p>
 <p> Biryani's Fav_Per: {{ biryani_details.favourite_percentage }} </p>
-{% if {{ biryani_details.does_akhila_like }} %}
+{% if biryani_details.does_akhila_like %}
     <p> Akhila likes it!! </p>
 {% else %}
     <p> Akhila doesn't like it!! </p>
