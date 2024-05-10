@@ -1,9 +1,22 @@
-<h> {{ biryani_details.biryani_name }} Details </h>
-<p> Biryani's Name: {{ biryani_details.biryani_name }} </p>
-<p> Biryani's Origin: {{ biryani_details.origin_place }} </p>
-<p> Biryani's Fav_Per: {{ biryani_details.favourite_percentage }} </p>
-{% if biryani_details.does_akhila_like %}
-    <p> Akhila likes it!! </p>
-{% else %}
-    <p> Akhila doesn't like it!! </p>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biryani Details</title>
+</head>
+<body>
+    <h1>{{ biryani_details.biryani_name }} Details</h1>
+    <hr>
+    <p> Biryani's Name: {{ biryani_details.biryani_name }} </p>
+    <p> Biryani's Origin: {{ biryani_details.origin_place }} </p>
+    <p> Biryani's Fav_Per: {{ biryani_details.favourite_percentage }} </p>
+    {% if biryani_details.does_akhila_like %}
+        <p> Akhila likes it!! </p>
+    {% else %}
+        <p> Akhila doesn't like it!! </p>
+    {% endif %}
+    <a href="/biryani/">Home: Get All Biryani Details Here</a>
+</body>
+</html>
