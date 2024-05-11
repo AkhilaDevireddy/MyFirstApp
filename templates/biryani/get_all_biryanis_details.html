@@ -14,8 +14,19 @@
 </head>
 
 <body>
-    <div class="container mt-5">
-        <table>
+    <!-- Navbar -->
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand">Delicious Biryani App</a>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search Biryani Name" aria-label="Search" name="search_biryani_name">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+    </nav>
+    <div class="container mt-5 text-center">
+        <!-- Table -->
+        <table class="container mt-5">
             <tr>
                 <th>S.No</th>
                 <th>Biryani Name</th>
@@ -43,8 +54,11 @@
                             😍
                         {% endif %}
                 </td>
-                <td><img src="/media/{{ biryani.biryani_image }}" alt="" style="height: 100px"></td>
-                <td><a class="btn btn-danger" href="/biryani/delete_biryani_by_name/{{ biryani.biryani_name }}/">DELETE</a></td>
+                <td><img src="/media/{{ biryani.biryani_image }}" alt=" " style="height: 100px"></td>
+                <td>
+                    <a class="btn btn-danger" href="/biryani/delete_biryani_by_name/{{ biryani.biryani_name }}/">DELETE</a>
+                    <a class="btn btn-submit" href="/biryani/update/{{ biryani.biryani_name }}/">UPDATE</a>
+                </td>
             </tr>
             {% endfor %}
         </table>

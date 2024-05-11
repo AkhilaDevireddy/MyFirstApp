@@ -20,7 +20,7 @@ urlpatterns = [
     path('', biryani_views.get_biryani_details, name='List of Biryani Details'), 
     path('get_biryani_details/', biryani_views.get_biryani_details_by_name, name='Get Biryani Details By Biryani Name'), 
     path('add_biryani_details/', biryani_views.add_biryani_details, name='Add Biryani Details'), 
-    path('update_biryani_details/', biryani_views.update_biryani_details, name='Update Biryani Details'), 
+    path('update/<biryani_name>/', biryani_views.update_biryani_details, name='Update Biryani By Name'),                        # Dynamic URL
     path('delete_biryanis/', biryani_views.delete_biryanis, name='Delete Biryanis'), 
-    path('delete_biryani_by_name/<biryani_name>/', biryani_views.delete_biryani_by_name, name='Delete Biryani By Name'), 
+    path('delete_biryani_by_name/<biryani_name>/', biryani_views.delete_biryani_by_name, name='Delete Biryani By Name'),        # Dynamic URL
 ]
