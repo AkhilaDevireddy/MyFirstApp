@@ -1,8 +1,9 @@
-import json
-
 from django.shortcuts import render, redirect
 from django.http import Http404, HttpResponse
-from django.views.decorators.csrf import csrf_exempt
+# from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import authenticate
 
 from biryani.models import BiryaniDB
 from MyFirstApp.settings import *
@@ -72,9 +73,6 @@ def update_biryani_details(request, biryani_name):
         biryani_dict['favourite_percentage'] = biryani_details.get('biryani_rating')
         biryani_dict['does_akhila_like'] = True if biryani_details.get('akhila_preference') == 'YES' else False
 
-        print(request)
-        print(biryani_dict['biryani_image'])
-
         # biryani.update(**biryani_dict)  # Doesn't upload images at the right folder, so following save()
 
         biryani.biryani_name = biryani_dict['biryani_name']
@@ -87,3 +85,62 @@ def update_biryani_details(request, biryani_name):
         return redirect('/biryani/')
 
     return render(request, 'biryani/update_biryani_details.html', {'biryani_details': biryani})
+
+def login(request):
+    if request.method == 'POST':
+        user_login_details = request.POST
+        username = user_login_details.get('username')
+        password = user_login_details.get('password')
+
+        user = User.objects.filter(username=username)
+        
+        if user.exists():
+            messages.error(request, 'Invalid Username')
+            return redirect('/login/')
+
+        user = authenticate(username=username, password=password)
+
+        # if user is None
+
+
+        if user.exists():
+            if password == user[0].password:
+                print("HERE-1")
+                # return redirect('/')
+            else:
+                print("HERE-2")
+                # return HttpResponse()           # Show error message: Wrong Credentials
+        else:
+            messages.info(request, "User doesn't exist")
+            # print("HERE-3")
+            # return HttpResponse()           # Show error message: User Doesn't Exist
+        
+    return render(request, 'auth/login.html')
+
+def register(request):
+    if request.method == 'POST':
+        user_login_details = request.POST
+        first_name = user_login_details.get('first_name')
+        last_name = user_login_details.get('last_name')
+        email = user_login_details.get('email')
+        username = user_login_details.get('username')
+        password = user_login_details.get('password')
+
+        user = User.objects.filter(username=username)
+
+        if user.exists():
+            messages.info(request, 'Username already exists')
+            return redirect('/register/')
+
+        user = User.objects.create(
+                                    first_name = first_name,
+                                    last_name = last_name,
+                                    email = email,
+                                    username = username
+                                )
+        user.set_password(password)
+        user.save()
+        messages.info(request, 'Account created successfully')
+
+        return redirect('/register/')
+    return render(request, 'auth/register.html')
